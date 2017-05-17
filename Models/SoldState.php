@@ -52,7 +52,7 @@ class SoldState implements State
      */
     public function insertQuarter(): string
     {
-        return "Please wait, we're already giving you a gumball";
+        return "Please wait, we're already giving you a gumball\n";
     }
 
     /**
@@ -62,7 +62,7 @@ class SoldState implements State
      */
     public function ejectQuarter(): string
     {
-        return "Sorry, you already turned the crank";
+        return "Sorry, you already turned the crank\n";
     }
 
     /**
@@ -72,7 +72,7 @@ class SoldState implements State
      */
     public function turnCrank(): string
     {
-        return "Turning twice doesn't get you another gumball!";
+        return "Turning twice doesn't get you another gumball!\n";
     }
 
     /**
@@ -82,18 +82,19 @@ class SoldState implements State
      */
     public function dispense(): string
     {
-        $this->gumballMachine->releaseBall();
+        $msg  = $this->gumballMachine->releaseBall();
+        $msg .= "\nYou may take your Gumball!\n";
 
         if ($this->gumballMachine->getCount() > 0) {
             $this->gumballMachine->setState($this->gumballMachine->getNoQuarterState());
-            return "";
+            return $msg;
         }
         $this->gumballMachine->setState($this->gumballMachine->getSoldOutState());
-        return "Oops, out of gumballs!";
+        return $msg . "\nOops, out of gumballs!\n";
     }
 
     public function toString() : string
     {
-        return "dispensing a gumball";
+        return "dispensing a gumball\n";
     }
 }

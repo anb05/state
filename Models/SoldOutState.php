@@ -51,7 +51,7 @@ class SoldOutState implements State
      */
     public function insertQuarter(): string
     {
-        return "You can\'t insert another quarter, the machine is sold out";
+        return "You can't insert another quarter, the machine is sold out\n";
     }
 
     /**
@@ -61,7 +61,7 @@ class SoldOutState implements State
      */
     public function ejectQuarter(): string
     {
-        return "You can't eject, you haven't inserted a quarter yet";
+        return "You can't eject, you haven't inserted a quarter yet\n";
     }
 
     /**
@@ -71,7 +71,7 @@ class SoldOutState implements State
      */
     public function turnCrank(): string
     {
-        return "You turned, but there are no gumballs";
+        return "You turned, but there are no gumballs\n";
     }
 
     /**
@@ -81,11 +81,11 @@ class SoldOutState implements State
      */
     public function dispense(): string
     {
-        return "No gumball dispensed";
+        return "No gumball dispensed\n";
     }
 
     public function toString() : string
     {
-        return "sold out";
+        return "sold out\n";
     }
 }

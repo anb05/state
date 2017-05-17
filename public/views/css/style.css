@@ -1,0 +1,197 @@
+/******************************************************
+*******************************************************
+*     html
+*
+*******************************************************
+*******************************************************/
+html {
+    background:                         linear-gradient(to bottom, lightblue, lightgoldenrodyellow) no-repeat fixed;
+    color:                              navy;
+    font-family:                        Arial, Geneva, Helvetica, sans-serif;
+    font-size:                          14pt;
+    line-height:                        1.5;
+    height:                             100%;
+}
+
+/*****************************************************
+******************************************************
+*
+*     body
+*
+*****************************************************
+*****************************************************/
+body {
+    min-width:                          640px;
+}
+
+/****************************************************
+*****************************************************
+*
+*     header
+*
+*****************************************************
+****************************************************/
+header {
+    background:                         rgba(255,200,100, 0.5);
+    min-height:                             100px;
+    border:                             2px solid brown;
+/*    -webkit-box-shadow:                 inset 0px 0px 5px brown;
+    -moz-box-shadow:                    inset 0px 0px 5px brown;
+*/
+    box-shadow:                         inset 0px 0px 5px brown;
+    border-bottom-left-radius:          15px;
+    border-bottom-right-radius:         15px;
+    padding:                            10px;
+}
+
+dt {
+    font-weight:                        bolder;
+    text-shadow:                        1px 1px 2px #0ff, 2px 2px 3px #f0f;
+}
+
+dd {
+    font-style:                         italic;
+    padding-left:                       60px;
+    text-align:                         justify;
+}
+
+/***************************************************
+****************************************************
+*
+*    main
+*
+****************************************************
+****************************************************/
+main {
+    text-align:                         center;
+    width:                              30%;
+/*    min-width:                          285px;  */
+    height:                             100%;
+    float:                              left;
+    border:                             solid 1px white;
+    border-radius:                      10px;
+    padding:                            5px;
+    margin:                             5px;
+    box-shadow:                         0 0 10px rgba(0,0,0,0.5);
+}
+
+fieldset {
+    width:                              100%;
+    border:                             solid 1px white;
+    text-align:                         center;
+    padding-bottom:                     5px;
+}
+
+legend {
+    padding:                            5px;
+    margin:                             5px auto;
+}
+
+input {
+    border-radius:                      15px;
+}
+
+input:first-of-type {
+    width:                              150px;
+    height:                             30px;
+    font-size:                          70%;
+}
+
+div.box_gum {
+    display:                            table;
+    width:                              100%;
+}
+
+div.case, div.tray {
+    display:                            table-row;
+    width:                              100%;
+    text-align:                         center;
+}
+
+div.box, div.control, div.gim_tray, div.coin_return {
+    display:                            table-cell;
+    width:                              40%;
+    border:                             solid 1px white;
+}
+
+div.slot {
+    width:                              20px;
+    height:                             70px;
+    border:                             groove 4px white;
+    padding:                            5px;
+    margin:                             3px auto;
+}
+
+.button {
+    background-color:                   #ddd;
+    color:                              black;
+    font-weight:                        bold;
+    text-transform:                     uppercase;
+    text-shadow:                        1px 1px 3px #0ff, 0 0 8px #fff;
+    text-decoration:                    none;
+    display:                            block;
+    border:                             ridge 4px grey;
+    border-radius:                      20px;
+    padding:                            5px;
+    margin:                             20px 5px;
+}
+
+span {
+    color:                               darkred;
+    font-size:                           50%;
+    font-style:                          italic;
+}
+
+p.name_tray {
+    font-weight:                        bolder;
+    text-shadow:                        1px 1px 2px #0ff, 2px 2px 3px #f0f;
+}
+
+div.back_tray, div.opening_tray {
+    width:                              80%;
+    height:                             40px;
+    border:                             ridge 4px grey;
+    border-radius:                      15px;
+    padding:                            5px;
+    margin:                             15px auto;
+}
+/***************************************************
+****************************************************
+*
+*    aside
+*
+****************************************************
+****************************************************/
+aside {
+    text-align:                         center;
+    width:                              calc(70% - 20px);
+    padding:                            5px;
+    margin:                             5px 5px 5px auto;
+    border:                             solid 1px white;
+    border-radius:                      10px;
+    box-shadow:                         0 0 10px rgba(0,0,0,0.5);
+}
+
+img {
+    width:                              100%;
+}
+/***************************************************
+****************************************************
+*
+*    footer
+*
+****************************************************
+****************************************************/
+footer {
+    background:                         rgba(255,200,100, 0.5);
+    /*height:                             100px; */
+    border:                             2px solid brown;
+/*    -webkit-box-shadow:                 inset 0px 0px 5px brown;
+    -moz-box-shadow:                    inset 0px 0px 5px brown;
+*/
+    box-shadow:                         inset 0px 0px 5px brown;
+    border-top-left-radius:          15px;
+    border-top-right-radius:         15px;
+    clear:                              both;
+
+}

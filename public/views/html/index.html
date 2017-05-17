@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <title>Pattern State had been learnt</title>
+        <meta name="author" content="alexandr05@list.ru">
+        <meta name="keywords" content="pattern, State, learn, Freeman">
+        <meta name="description" content="Pattern is learning">
+        <meta name="robots" content="index, follow">
+
+        <link href="views/images/favicon.ico" rel="icon" type="image/ico">
+        <link href="views/css/reset.css" rel="stylesheet">
+        <link href="views/css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <dl>
+                <dt>
+                    Паттерн &laquo;Состояние&raquo;
+                </dt>
+                <dd>
+                    управляет изменением поведения объекта при изменении его внутреннего состояния. Внешне это выглядит так, словно объект меняет свой класс.
+                </dd>
+            </dl>
+        </header>
+
+        <main>
+            <div class="refill">
+                <form action="/" method="get" name="Box gun refill" autocomplete="on" title="Перезапуск автомата">
+                    <fieldset>
+                        <legend>
+                            Пополнить автомат жвачкой!
+                        </legend>
+                        <label for="number_gum"></label>
+                        <input type="number" name="refill" id="number_gum" placeholder="Введите число">
+                        <input type="submit" value="OK">
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="box_gum">
+                <div class="case">
+                    <div class="box">
+                    </div>
+
+                    <div class="control">
+                        <div class="money">
+                        </div>
+                        <p>
+                            Бросьте $0.25
+                        </p>
+                        <a href="/?slot=drop">
+                            <div class="slot">
+                            </div>
+                        </a>
+                        <a href="/?buy=buy" class="button">
+                            <p class="buy">купить</p>
+                        </a>
+                        <a href="/?return=back" class="button">
+                            <p class="buy">возврат</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="tray">
+                    <div class="gum_tray">
+                        <p class="name_tray">Окно выдачи<br> жвачки</p>
+                        <div class="opening_tray">
+                        </div>
+                        <p>Возьмите вашу жвачку <span>(вывод сделать динамическим)</span> </p>
+                    </div>
+                    <div class="coin_return">
+                        <p class="name_tray">Возврат<br> денег</p>
+                        <div class="back_tray">
+                        </div>
+                        <p>Заберите монетку <span>(Сделать вывод динамическим, по возврату монеты)</span></p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <aside>
+            <figure>
+                <figcaption>
+                    Диаграмма классов паттерна &laquo;Состояние&raquo;
+                </figcaption>
+                <img src="views/images/d_c.png" alt="Class Diagram" title="Диаграмма классов патерна &laquo;Состояние&raquo;">
+            </figure>
+        </aside>
+
+        <footer>
+            <p>
+                <?= str_replace("\n", "<br>\n", $message); ?>
+            </p>
+        </footer>
+    </body>
+</html>

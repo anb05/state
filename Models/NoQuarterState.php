@@ -53,7 +53,7 @@ class NoQuarterState implements State
     {
         $this->gumballMachine->setState($this->gumballMachine->getHasQuarterState());
 
-        return "You inserted a quarter";
+        return "You inserted a quarter\n";
     }
 
     /**
@@ -63,7 +63,7 @@ class NoQuarterState implements State
      */
     public function ejectQuarter(): string
     {
-        return "You haven\'t inserted a quarter";
+        return "You haven't inserted a quarter\n";
     }
 
     /**
@@ -73,7 +73,7 @@ class NoQuarterState implements State
      */
     public function turnCrank(): string
     {
-        return "Your turned, but there\'s no quarter";
+        return "Your turned, but there's no quarter\n";
     }
 
     /**
@@ -83,11 +83,11 @@ class NoQuarterState implements State
      */
     public function dispense(): string
     {
-        return "You need to pay first";
+        return "You need to pay first\n";
     }
 
     public function toString() : string
     {
-        return "waiting for quarter";
+        return "waiting for quarter\n";
     }
 }

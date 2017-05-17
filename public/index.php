@@ -27,7 +27,6 @@ if (!empty($_SESSION['remember'])) {
     $loader->run();
 }
 $_SESSION['remember'] = serialize($loader);
-//echo "<br>SESSION<br>\n";
-//var_dump($_SESSION);
 
-
+//echo "<p>GET</p>";
+//var_dump($_GET);

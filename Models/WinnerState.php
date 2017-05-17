@@ -1,6 +1,6 @@
 <?php
 /**
- * This file contain a class with HasQuarterState code
+ * This file contain a class with WinnerState code
  *
  * PHP version 7.1.2
  *
@@ -22,8 +22,8 @@ namespace State\Models;
 use \State\Contracts\State;
 
 /**
- * Class HasQuarterState
- * This class encapsulate the code with Has Quarter State
+ * Class SoldState
+ * This class encapsulate the code with Sold State
  *
  * @category Learn
  *
@@ -35,7 +35,7 @@ use \State\Contracts\State;
  *
  * @link https://github.com/anb05/state.git
  */
-class HasQuarterState implements State
+class WinnerState implements State
 {
     private $gumballMachine;
 
@@ -44,6 +44,7 @@ class HasQuarterState implements State
         $this->gumballMachine = $gumballMachine;
     }
 
+
     /**
      * This function change state to "HasQuarterState"
      *
@@ -51,7 +52,7 @@ class HasQuarterState implements State
      */
     public function insertQuarter(): string
     {
-        return "You can't insert another quarter\n";
+        return "Please wait, we're already giving you a Gumball\n";
     }
 
     /**
@@ -61,9 +62,7 @@ class HasQuarterState implements State
      */
     public function ejectQuarter(): string
     {
-        $this->gumballMachine->setState($this->gumballMachine->getNoQuarterState());
-
-        return "Quarter returned\n";
+        return "Please wait, we're already giving you a Gumball\n";
     }
 
     /**
@@ -73,13 +72,7 @@ class HasQuarterState implements State
      */
     public function turnCrank(): string
     {
-        $winner = rand(0, 10);
-        if (($winner == 0) && ($this->gumballMachine->getCount() > 1)) {
-            $this->gumballMachine->setState($this->gumballMachine->getWinnerState());
-        } else {
-            $this->gumballMachine->setState($this->gumballMachine->getSoldState());
-        }
-        return "You turned...\n";
+        return "Turning again doesn't get you another gumball!\n";
     }
 
     /**
@@ -89,11 +82,24 @@ class HasQuarterState implements State
      */
     public function dispense(): string
     {
-        return "No Gumball dispensed\n";
+        $msg = $this->gumballMachine->releaseBall();
+
+        if ($this->gumballMachine->getCount() == 0) {
+            $this->gumballMachine->setState($this->gumballMachine->getSoldOutState());
+        } else {
+            $msg .= "\n" . $this->gumballMachine->releaseBall();
+            if ($this->gumballMachine->getCount() > 0) {
+                $this->gumballMachine->setState($this->gumballMachine->getNoQuarterState());
+            } else {
+                $this->gumballMachine->setState($this->gumballMachine->getHasQuarterState());
+                return $msg . "\nOops, out of gumballs!\n";
+            }
+        }
+        return $msg . "\nYOU'RE A WINNER! You get two gumballs for your quarter\n";
     }
 
     public function toString() : string
     {
-        return "waiting for turn of crank\n";
+        return "dispensing two gumballs for your quarter, because YOU'RE A WINNER!\n";
     }
 }

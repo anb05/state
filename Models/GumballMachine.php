@@ -15,7 +15,7 @@
  * @link https://github.com/anb05/state.git
  */
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace State\Models;
 
@@ -37,6 +37,9 @@ use State\Contracts\State;
  */
 class GumballMachine
 {
+    /**
+     * There is the SoldOutState ojbect
+     */
     private $soldOutState;
 
     private $noQuarterState;
@@ -45,16 +48,28 @@ class GumballMachine
 
     private $soldState;
 
-    private $state = 0;
+    private $winnerState;
+
+    private $state;
 
     private $count = 0;
 
+    /**
+     * There is the construct from class GumballMachine
+     *
+     * @param int $numberGumballs <Number of balls refill into GumballMachine>
+     *
+     * @return void
+     */
     public function __construct(int $numberGumballs)
     {
         $this->soldOutState    = new SoldOutState($this);
         $this->noQuarterState  = new NoQuarterState($this);
         $this->hasQuarterState = new HasQuarterState($this);
         $this->soldState       = new SoldState($this);
+        $this->winnerState     = new WinnerState($this);
+
+        $this->state = $this->soldOutState;
 
         $this->count = $numberGumballs;
         if ($numberGumballs > 0) {
@@ -62,34 +77,36 @@ class GumballMachine
         }
     }
 
-    public function insertQuarter() : void
+    public function insertQuarter() : string
     {
-        $this->state->insertQuarter();
+        return $this->state->insertQuarter();
     }
 
-    public function ejectQuarter() : void
+    public function ejectQuarter() : string
     {
-        $this->state->ejectQuarter();
+        return $this->state->ejectQuarter();
     }
 
-    public function turnCrank() : void
+    public function turnCrank() : string
     {
-        $this->state->turnCrank();
-        $this->state->dispense();
+        $msg  = $this->state->turnCrank();
+        $msg .= $this->state->dispense();
+        return $msg;
     }
 
     public function setState(State $state) : void
     {
-        $this->state = $state;
+         $this->state = $state;
     }
 
     public function releaseBall() : string
     {
-        if ($this->count != 0) {
+        $msg = '';
+        if ($this->count > 0) {
             $this->count -= 1;
+            $msg = "A gumball comes rolling out the slot ...";
         }
-
-        return "A gumball comes rolling out the slot ...";
+        return $msg;
     }
 
     public function getCount() : int
@@ -128,6 +145,11 @@ class GumballMachine
         return $this->soldState;
     }
 
+    public function getWinnerState()
+    {
+        return $this->winnerState;
+    }
+
     public function toString() : string
     {
         $string = "\nMighty Gumball, Inc.";
@@ -137,7 +159,7 @@ class GumballMachine
             $string .= "s";
         }
         $string .= "\n";
-        $string .= "Machine is " . $this->state . "\n";
+        $string .= "Machine is " . $this->state->toString() . "\n";
 
         return $string;
     }
