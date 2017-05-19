@@ -38,13 +38,15 @@ class GumballStart
 {
     private $gumballMachine;
 
+    private $guide = [];
+
     private $message;
     /**
      *
      */
     public function __construct()
     {
-        $this->gumballMachine = new GumballMachine(50);
+        $this->gumballMachine = new GumballMachine(5);
     }
 
     /**
@@ -64,8 +66,8 @@ class GumballStart
 //        $message .= $this->gumballMachine->getState()->toString();
         $message .= $this->message;
         include_once realpath(__DIR__ . "/../public/views/html/index.html");
-//        echo "<br> Состояние this::message <br>\n";
-//        var_dump($this->message);
+        echo "<br> Состояние this::guide <br>\n";
+        var_dump($this->guide);
 //        echo "<br>OBJECT<br>";
 //        var_dump(get_class($this->gumballMachine->getState()));
     }
@@ -83,13 +85,14 @@ class GumballStart
 
     private function actionSlot()
     {
-        $this->message = $this->gumballMachine->insertQuarter();
+        $this->guide = $this->gumballMachine->insertQuarter();
 //        $this->message = "<br> Роутер" . __METHOD__ . "<br>" . $message . "<br>";
     }
 
     private function actionBuy()
     {
-        $this->message = $this->gumballMachine->turnCrank();
+        $msg = $this->gumballMachine->turnCrank();
+        $this->guide = array_merge($this->guide, $msg);
 //        $this->message = "<br> Роутер" . __METHOD__ . "<br>";
     }
 
@@ -101,8 +104,11 @@ class GumballStart
 
     private function actionRefill()
     {
-//        $count = (int)$_GET['refill'];
-//        $this->message = "<br> Роутер" . __METHOD__ . "<br> Balls = " . (string)$count . "<br>";
+        if ($this->gumballMachine->getState() === $this->gumballMachine->getSoldOutState()) {
+            $count = (int)$_GET['refill'];
+            $this->gumballMachine->refill($count);
+            $this->message = '';
+        }
     }
 
     public function __call($name = '', $arguments = '')

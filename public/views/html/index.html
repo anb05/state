@@ -41,6 +41,14 @@
             <div class="box_gum">
                 <div class="case">
                     <div class="box">
+                        <div class="inform_fill">
+                            <p>
+                                Guide
+                            </p>
+                            <p>
+                                <?= @str_replace("\n", "<br>\n", $this->guide['guide']); ?>
+                            </p>
+                        </div>
                     </div>
 
                     <div class="control">
@@ -66,6 +74,9 @@
                     <div class="gum_tray">
                         <p class="name_tray">Окно выдачи<br> жвачки</p>
                         <div class="opening_tray">
+                            <p>
+                                <?= @str_replace("\n", "<br>\n", $this->guide['inform']); ?>
+                            </p>
                         </div>
                         <p>Возьмите вашу жвачку <span>(вывод сделать динамическим)</span> </p>
                     </div>

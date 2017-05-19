@@ -58,8 +58,6 @@ class GumballMachine
      * There is the construct from class GumballMachine
      *
      * @param int $numberGumballs <Number of balls refill into GumballMachine>
-     *
-     * @return void
      */
     public function __construct(int $numberGumballs)
     {
@@ -77,9 +75,11 @@ class GumballMachine
         }
     }
 
-    public function insertQuarter() : string
+    public function insertQuarter() : array
     {
-        return $this->state->insertQuarter();
+        $msg['guide']  = $this->state->insertQuarter();
+        $msg['inform'] = '';
+        return $msg;
     }
 
     public function ejectQuarter() : string
@@ -87,10 +87,10 @@ class GumballMachine
         return $this->state->ejectQuarter();
     }
 
-    public function turnCrank() : string
+    public function turnCrank() : array
     {
-        $msg  = $this->state->turnCrank();
-        $msg .= $this->state->dispense();
+        $msg['guide']  = $this->state->turnCrank();
+        $msg['inform'] = $this->state->dispense();
         return $msg;
     }
 
@@ -152,9 +152,9 @@ class GumballMachine
 
     public function toString() : string
     {
-        $string = "\nMighty Gumball, Inc.";
-        $string .= "\nPHP-enabled Standing Gumball Model #2017";
-        $string .= "\nInventory: " . $this->count . " gumball";
+        $string = "Mighty Gumball, Inc.\n";
+        $string .= "PHP-enabled Standing Gumball Model #2017\n";
+        $string .= "Inventory: " . $this->count . " gumball";
         if (1 != $this->count) {
             $string .= "s";
         }
