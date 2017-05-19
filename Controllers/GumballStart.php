@@ -38,7 +38,7 @@ class GumballStart
 {
     private $gumballMachine;
 
-    private $guide = [];
+    private $guide;
 
     private $message;
     /**
@@ -66,8 +66,9 @@ class GumballStart
 //        $message .= $this->gumballMachine->getState()->toString();
         $message .= $this->message;
         include_once realpath(__DIR__ . "/../public/views/html/index.html");
-        echo "<br> Состояние this::guide <br>\n";
-        var_dump($this->guide);
+
+//        echo "<br> Состояние this::guide <br>\n";
+//        var_dump($this->guide);
 //        echo "<br>OBJECT<br>";
 //        var_dump(get_class($this->gumballMachine->getState()));
     }
@@ -85,14 +86,14 @@ class GumballStart
 
     private function actionSlot()
     {
-        $this->guide = $this->gumballMachine->insertQuarter();
+        $this->message = $this->gumballMachine->insertQuarter();
 //        $this->message = "<br> Роутер" . __METHOD__ . "<br>" . $message . "<br>";
     }
 
     private function actionBuy()
     {
-        $msg = $this->gumballMachine->turnCrank();
-        $this->guide = array_merge($this->guide, $msg);
+        $this->message = $this->gumballMachine->turnCrank();
+//        $this->guide = array_merge($this->guide, $msg);
 //        $this->message = "<br> Роутер" . __METHOD__ . "<br>";
     }
 

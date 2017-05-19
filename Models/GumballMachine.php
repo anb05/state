@@ -75,11 +75,9 @@ class GumballMachine
         }
     }
 
-    public function insertQuarter() : array
+    public function insertQuarter() : string
     {
-        $msg['guide']  = $this->state->insertQuarter();
-        $msg['inform'] = '';
-        return $msg;
+        return $this->state->insertQuarter();
     }
 
     public function ejectQuarter() : string
@@ -87,10 +85,10 @@ class GumballMachine
         return $this->state->ejectQuarter();
     }
 
-    public function turnCrank() : array
+    public function turnCrank() : string
     {
-        $msg['guide']  = $this->state->turnCrank();
-        $msg['inform'] = $this->state->dispense();
+        $msg  = $this->state->turnCrank();
+        $msg .= $this->state->dispense();
         return $msg;
     }
 
