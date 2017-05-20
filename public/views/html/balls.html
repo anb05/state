@@ -1,0 +1,17 @@
+<?php $balls = $this->gumballMachine->getCount(); ?>
+<?php $rows  = intdiv($balls, 5); ?>
+<?php $balls_first_row = $balls % 5; ?>
+<div>
+<?php for ($ball = 0; $ball < $balls_first_row; $ball ++): ?>
+    <div class="one_ball">
+    </div>
+<?php endfor; ?>
+</div>
+<?php for ($row = 0; $row < $rows; $row++) : ?>
+<div>
+    <?php for ($ball = 0; $ball < 5; $ball ++): ?>
+    <div class="one_ball">
+    </div>
+    <?php endfor; ?>
+</div>
+<?php endfor; ?>

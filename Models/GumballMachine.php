@@ -38,7 +38,7 @@ use State\Contracts\State;
 class GumballMachine
 {
     /**
-     * There is the SoldOutState ojbect
+     * There is the SoldOutState object
      */
     private $soldOutState;
 
@@ -53,6 +53,8 @@ class GumballMachine
     private $state;
 
     private $count = 0;
+
+    private $ball = false;
 
     /**
      * There is the construct from class GumballMachine
@@ -103,8 +105,19 @@ class GumballMachine
         if ($this->count > 0) {
             $this->count -= 1;
             $msg = "A gumball comes rolling out the slot ...";
+            $this->ball = true;
         }
         return $msg;
+    }
+
+    public function getBallRelease() : bool
+    {
+        return $this->ball;
+    }
+
+    public function resetBallRelease() :void
+    {
+        $this->ball = false;
     }
 
     public function getCount() : int
@@ -157,7 +170,7 @@ class GumballMachine
             $string .= "s";
         }
         $string .= "\n";
-        $string .= "Machine is " . $this->state->toString() . "\n";
+        $string .= "Machine is " . $this->state->toString();
 
         return $string;
     }

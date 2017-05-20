@@ -20,6 +20,7 @@ declare(strict_types=1);
 namespace State\Controllers;
 
 use State\Models\GumballMachine;
+use State\Models\HasQuarterState;
 
 /**
  * This class start application
@@ -41,6 +42,8 @@ class GumballStart
     private $guide;
 
     private $message;
+
+    private $tray;
     /**
      *
      */
@@ -61,16 +64,12 @@ class GumballStart
             $this->$wey();
         }
 
-        $message  = $this->gumballMachine->toString();
-        $message .= "\n";
-//        $message .= $this->gumballMachine->getState()->toString();
-        $message .= $this->message;
+        $this->message  = $this->gumballMachine->toString();
         include_once realpath(__DIR__ . "/../public/views/html/index.html");
 
-//        echo "<br> Состояние this::guide <br>\n";
-//        var_dump($this->guide);
-//        echo "<br>OBJECT<br>";
-//        var_dump(get_class($this->gumballMachine->getState()));
+        $this->tray    = '';
+        $this->message = '';
+        $this->guide   = '';
     }
 
     private function route(array $arr)
@@ -80,27 +79,30 @@ class GumballStart
         if (isset($key)) {
             $way .= ucfirst((string)trim($key));
         }
-//        echo "<br>" . $way . "<br>";
         return $way;
     }
 
     private function actionSlot()
     {
-        $this->message = $this->gumballMachine->insertQuarter();
-//        $this->message = "<br> Роутер" . __METHOD__ . "<br>" . $message . "<br>";
+        $this->guide = $this->gumballMachine->insertQuarter();
     }
 
     private function actionBuy()
     {
-        $this->message = $this->gumballMachine->turnCrank();
-//        $this->guide = array_merge($this->guide, $msg);
-//        $this->message = "<br> Роутер" . __METHOD__ . "<br>";
+        $this->guide = $this->gumballMachine->turnCrank();
+
+        if ($this->gumballMachine->getBallRelease() === true) {
+            $this->tray = "ball";
+            $this->gumballMachine->resetBallRelease();
+        }
     }
 
     private function actionReturn()
     {
-        $this->message = $this->gumballMachine->ejectQuarter();
-//        $this->message = "<br> Роутер" . __METHOD__ . "<br>";
+        if ($this->gumballMachine->getState() instanceof HasQuarterState) {
+            $this->tray = "quarter";
+    }
+        $this->guide = $this->gumballMachine->ejectQuarter();
     }
 
     private function actionRefill()
@@ -108,7 +110,6 @@ class GumballStart
         if ($this->gumballMachine->getState() === $this->gumballMachine->getSoldOutState()) {
             $count = (int)$_GET['refill'];
             $this->gumballMachine->refill($count);
-            $this->message = '';
         }
     }
 

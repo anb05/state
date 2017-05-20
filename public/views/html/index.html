@@ -46,8 +46,12 @@
                                 Guide
                             </p>
                             <p>
-                                <?= @str_replace("\n", "<br>\n", $this->guide['guide']); ?>
+                                <?= @str_replace("\n", "<br>\n", $this->guide); ?>
                             </p>
+                        </div>
+
+                        <div class="balls">
+                            <?php include_once __DIR__ . "/balls.html"; ?>
                         </div>
                     </div>
 
@@ -72,19 +76,20 @@
 
                 <div class="tray">
                     <div class="gum_tray">
-                        <p class="name_tray">Окно выдачи<br> жвачки</p>
+                        <p class="name_tray">Выдача товара</p>
                         <div class="opening_tray">
-                            <p>
-                                <?= @str_replace("\n", "<br>\n", $this->guide['inform']); ?>
-                            </p>
+                            <?php if ($this->tray === 'ball'): ?>
+                            <p>Возьмите вашу жвачку</p>
+                            <?php endif; ?>
                         </div>
-                        <p>Возьмите вашу жвачку <span>(вывод сделать динамическим)</span> </p>
                     </div>
                     <div class="coin_return">
-                        <p class="name_tray">Возврат<br> денег</p>
+                        <p class="name_tray">Возврат денег</p>
                         <div class="back_tray">
+                            <?php if ($this->tray === 'quarter'): ?>
+                            <p>Заберите монетку</p>
+                            <?php endif; ?>
                         </div>
-                        <p>Заберите монетку <span>(Сделать вывод динамическим, по возврату монеты)</span></p>
                     </div>
                 </div>
             </div>
@@ -101,7 +106,7 @@
 
         <footer>
             <p>
-                <?= str_replace("\n", "<br>\n", $message); ?>
+                <?= str_replace("\n", "<br>\n", $this->message); ?>
             </p>
         </footer>
     </body>
